@@ -25,6 +25,10 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
+  register(data) {
+    return this.http.post<any>(`${environment.apiUrl}authentication/register`, data);
+  }
+
   login(email: string, password: string) {
     return this.http.post<any>(`${environment.apiUrl}authentication/login`, {email, password})
       .pipe(map(user => {

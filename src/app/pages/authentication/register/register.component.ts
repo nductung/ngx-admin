@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component, Inject} from '@angular/core';
-import {getDeepFromObject, NB_AUTH_OPTIONS, NbAuthResult, NbAuthService, NbAuthSocialLink} from '@nebular/auth';
+import {getDeepFromObject, NB_AUTH_OPTIONS, NbAuthSocialLink} from '@nebular/auth';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../../../services/authentication.service';
 
 @Component({
   selector: 'ngx-register',
@@ -19,7 +20,7 @@ export class RegisterComponent {
   user: any = {};
   socialLinks: NbAuthSocialLink[] = [];
 
-  constructor(protected service: NbAuthService,
+  constructor(protected service: AuthenticationService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
               protected cd: ChangeDetectorRef,
               protected router: Router) {
@@ -34,21 +35,12 @@ export class RegisterComponent {
     this.errors = this.messages = [];
     this.submitted = true;
 
-    this.service.register(this.strategy, this.user).subscribe((result: NbAuthResult) => {
+    this.service.register(this.user).subscribe((res) => {
       this.submitted = false;
-      if (result.isSuccess()) {
-        this.messages = result.getMessages();
-      } else {
-        this.errors = result.getErrors();
-      }
-
-      const redirect = result.getRedirect();
-      if (redirect) {
-        setTimeout(() => {
-          return this.router.navigateByUrl(redirect);
-        }, this.redirectDelay);
-      }
-      this.cd.detectChanges();
+      this.router.navigate(['/auth/login']).then();
+    }, error => {
+      this.submitted = false;
+      this.errors.push(error);
     });
   }
 
