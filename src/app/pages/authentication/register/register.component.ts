@@ -37,9 +37,11 @@ export class RegisterComponent {
 
     this.service.register(this.user).subscribe((res) => {
       this.submitted = false;
-      this.router.navigate(['/auth/login']).then();
+      this.errors = [];
+      this.messages.push(res.message);
     }, error => {
       this.submitted = false;
+      this.messages = [];
       this.errors.push(error);
     });
   }
