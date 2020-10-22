@@ -6,6 +6,7 @@ import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   declarations: [
     PagesComponent,
     DashboardComponent,
+    ProfileComponent,
   ],
 })
 export class PagesModule {
