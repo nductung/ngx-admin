@@ -22,10 +22,16 @@ export class LoginComponent {
   socialLinks: NbAuthSocialLink[] = [];
   rememberMe = false;
 
-  constructor(protected service: AuthenticationService,
-              @Inject(NB_AUTH_OPTIONS) protected options = {},
-              protected cd: ChangeDetectorRef,
-              protected router: Router) {
+  constructor(
+    protected service: AuthenticationService,
+    @Inject(NB_AUTH_OPTIONS) protected options = {},
+    protected cd: ChangeDetectorRef,
+    protected router: Router,
+  ) {
+    // redirect to home if already logged in
+    if (this.service.currentUserValue) {
+      this.router.navigate(['/pages']).then();
+    }
 
     this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
     this.showMessages = this.getConfigValue('forms.login.showMessages');

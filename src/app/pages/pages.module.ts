@@ -1,5 +1,12 @@
 import { NgModule } from '@angular/core';
-import { NbMenuModule } from '@nebular/theme';
+import {
+  NbAlertModule,
+  NbButtonModule,
+  NbCheckboxModule,
+  NbIconModule,
+  NbInputModule,
+  NbMenuModule
+} from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
@@ -10,6 +17,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import {NbAuthModule} from "@nebular/auth";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -18,6 +26,12 @@ import {NbAuthModule} from "@nebular/auth";
     NbMenuModule,
     MiscellaneousModule,
     NbAuthModule,
+    NbAlertModule,
+    FormsModule,
+    NbInputModule,
+    NbCheckboxModule,
+    NbIconModule,
+    NbButtonModule,
   ],
   declarations: [
     PagesComponent,

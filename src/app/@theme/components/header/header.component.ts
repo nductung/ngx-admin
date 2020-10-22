@@ -6,6 +6,7 @@ import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../../../services/authentication.service';
 
 @Component({
   selector: 'ngx-header',
@@ -47,6 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private userService: UserData,
               private layoutService: LayoutService,
               private router: Router,
+              protected authenticationService: AuthenticationService,
               private breakpointService: NbMediaBreakpointsService) {
   }
 
@@ -76,7 +78,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (event.item.title === 'Profile') {
         this.router.navigate(['/pages/profile']).then();
       } else if (event.item.title === 'Log out') {
-        console.dir('Log out');
+        this.authenticationService.logout();
+        this.router.navigate(['/auth/login']);
       }
     });
   }

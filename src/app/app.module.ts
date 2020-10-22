@@ -67,7 +67,7 @@ const formSetting: any = {
           },
           token: {
             class: NbAuthJWTToken,
-            key: 'access_token',
+            key: 'data.accessToken',
           },
         }),
       ],
