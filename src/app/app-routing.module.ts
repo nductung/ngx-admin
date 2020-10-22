@@ -1,47 +1,31 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-import {
-  NbAuthComponent,
-  NbLoginComponent,
-  NbLogoutComponent,
-  NbRegisterComponent,
-  NbRequestPasswordComponent,
-  NbResetPasswordComponent,
-} from '@nebular/auth';
+import {ExtraOptions, RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {LoginComponent} from './pages/authentication/login/login.component';
+import {AuthGuard} from './helpers/auth.guard';
+import {NbAuthComponent} from '@nebular/auth';
 
 export const routes: Routes = [
   {
     path: 'pages',
-    loadChildren: () => import('./pages/pages.module')
-      .then(m => m.PagesModule),
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
   },
   {
     path: 'auth',
     component: NbAuthComponent,
     children: [
       {
-        path: '',
-        component: NbLoginComponent,
-      },
-      {
         path: 'login',
-        component: NbLoginComponent,
+        component: LoginComponent,
       },
       {
-        path: 'register',
-        component: NbRegisterComponent,
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
       },
       {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
-        path: 'request-password',
-        component: NbRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
+        path: '**',
+        redirectTo: 'login',
       },
     ],
   },
