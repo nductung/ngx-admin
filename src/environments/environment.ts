@@ -10,5 +10,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000/admin/api/v1',
+  apiUrl: 'http://52.77.244.134/admin/api/v1',
 };
