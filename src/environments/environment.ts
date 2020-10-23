@@ -11,4 +11,5 @@
 export const environment = {
   production: false,
   apiUrl: 'http://52.77.244.134:4000/api/v1/',
+  avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIXIrqiW3R5OstWAjkuFvNwvjYHRaTmwEQWg&usqp=CAU',
 };

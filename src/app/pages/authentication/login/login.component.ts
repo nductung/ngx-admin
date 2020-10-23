@@ -49,6 +49,7 @@ export class LoginComponent {
       res => {
         this.submitted = false;
         this.errors = [];
+        this.messages.push(res.message);
         this.router.navigate(['/pages']).then();
       },
       error => {

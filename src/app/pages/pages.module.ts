@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
   NbAlertModule,
-  NbButtonModule,
+  NbButtonModule, NbCardModule,
   NbCheckboxModule,
   NbIconModule,
   NbInputModule,
@@ -34,6 +34,7 @@ import { ResetPasswordComponent } from './authentication/reset-password/reset-pa
     NbCheckboxModule,
     NbIconModule,
     NbButtonModule,
+    NbCardModule,
   ],
   declarations: [
     PagesComponent,
