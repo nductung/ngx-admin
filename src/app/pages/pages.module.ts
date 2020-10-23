@@ -17,7 +17,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import {NbAuthModule} from '@nebular/auth';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RequestPasswordComponent } from './authentication/request-password/request-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
 
@@ -35,6 +35,7 @@ import { ResetPasswordComponent } from './authentication/reset-password/reset-pa
     NbIconModule,
     NbButtonModule,
     NbCardModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     PagesComponent,

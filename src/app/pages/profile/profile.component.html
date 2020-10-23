@@ -1,52 +1,66 @@
-<div class="row">
-  <div class="col-lg-8 order-2">
-    <nb-card size="giant">
-      <nb-card-body>
-        <div class="row">
-          <div class="mb-3 col-md-6 col-sm-12 col-12">
-            <label for="first-name" class="label d-block">First Name</label>
-            <input id="first-name" type="text" placeholder="First Name" fullWidth nbInput class="d-block"
-                   [value]="user?.firstName">
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+  <div class="row">
+    <div class="col-lg-8 order-2">
+      <nb-card size="giant">
+        <nb-card-body>
+          <div class="row">
+            <div class="mb-3 col-md-6 col-sm-12 col-12">
+              <label for="username" class="label d-block">Username</label>
+              <input id="username" type="text" placeholder="Username" fullWidth nbInput class="d-block text-secondary"
+                     [status]="submitted ? formGroup.controls.username.errors ? 'danger' : 'success' : 'basic'"
+                     formControlName="username">
+            </div>
+            <div class="mb-3 col-md-6 col-sm-12 col-12">
+              <label for="email" class="label d-block">Email</label>
+              <input id="email" type="email" placeholder="Email" fullWidth nbInput class="d-block text-secondary"
+                     [status]="submitted ? formGroup.controls.email.errors ? 'danger' : 'success' : 'basic'"
+                     formControlName="email">
+            </div>
+            <div class="mb-3 col-md-6 col-sm-12 col-12">
+              <label for="first-name" class="label d-block">First Name</label>
+              <input id="first-name" type="text" placeholder="First Name" fullWidth nbInput class="d-block"
+                     [status]="submitted ? formGroup.controls.firstName.errors ? 'danger' : 'success' : 'basic'"
+                     formControlName="firstName">
+            </div>
+            <div class="mb-3 col-md-6 col-sm-12 col-12">
+              <label for="last-name" class="label d-block">Last Name</label>
+              <input id="last-name" type="text" placeholder="Last Name" fullWidth nbInput class="d-block"
+                     [status]="submitted ? formGroup.controls.lastName.errors ? 'danger' : 'success' : 'basic'"
+                     formControlName="lastName">
+            </div>
+            <div class="mb-3 col-md-6 col-sm-12 col-12">
+              <label for="created-at" class="label d-block">Created at</label>
+              <input id="created-at" type="text" placeholder="Created at" fullWidth nbInput
+                     class="d-block text-secondary"
+                     [status]="submitted ? formGroup.controls.createdAt.errors ? 'danger' : 'success' : 'basic'"
+                     formControlName="createdAt">
+            </div>
+            <div class="mb-3 col-md-6 col-sm-12 col-12">
+              <label for="updated-at" class="label d-block">Updated at</label>
+              <input id="updated-at" type="text" placeholder="Updated at" fullWidth nbInput
+                     class="d-block text-secondary"
+                     [status]="submitted ? formGroup.controls.updatedAt.errors ? 'danger' : 'success' : 'basic'"
+                     formControlName="updatedAt">
+            </div>
+            <div class="mb-3 col-md-12 col-sm-12 col-12">
+              <button nbButton status="primary">Save</button>
+            </div>
           </div>
-          <div class="mb-3 col-md-6 col-sm-12 col-12">
-            <label for="last-name" class="label d-block">Last Name</label>
-            <input id="last-name" type="text" placeholder="Last Name" fullWidth nbInput class="d-block"
-                   [value]="user?.lastName">
-          </div>
-          <div class="mb-3 col-md-6 col-sm-12 col-12">
-            <label for="username" class="label d-block">Username</label>
-            <input id="username" type="text" placeholder="Username" fullWidth nbInput class="d-block"
-                   [value]="user?.username">
-          </div>
-          <div class="mb-3 col-md-6 col-sm-12 col-12">
-            <label for="email" class="label d-block">Email</label>
-            <input id="email" type="email" placeholder="Email" fullWidth nbInput class="d-block" [value]="user?.email">
-          </div>
-          <div class="mb-3 col-md-6 col-sm-12 col-12">
-            <label for="created-at" class="label d-block">Created at</label>
-            <input id="created-at" type="text" placeholder="Created at" fullWidth nbInput class="d-block"
-                   [value]="user?.createdAt" disabled>
-          </div>
-          <div class="mb-3 col-md-6 col-sm-12 col-12">
-            <label for="updated-at" class="label d-block">Updated at</label>
-            <input id="updated-at" type="text" placeholder="Updated at" fullWidth nbInput class="d-block"
-                   [value]="user?.updatedAt" disabled>
-          </div>
-        </div>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="col-lg-4 order-1 order-md-12">
-    <div class="">
-      <div class="avatar-wrapper">
-        <img [src]="user?.avatar" alt="avatar"/>
-        <ng-template #hasAvatarUpload>
-          <img [src]="user?.avatar" alt="avatar">
-        </ng-template>
-      </div>
-      <nb-card>
-        <nb-card-body class="mb-5"></nb-card-body>
+        </nb-card-body>
       </nb-card>
     </div>
+    <div class="col-lg-4 order-1 order-md-12">
+      <div class="">
+        <div class="avatar-wrapper">
+          <img [src]="user?.picture" alt="avatar"/>
+          <ng-template #hasAvatarUpload>
+            <img [src]="user?.picture" alt="avatar">
+          </ng-template>
+        </div>
+        <nb-card>
+          <nb-card-body class="mb-5"></nb-card-body>
+        </nb-card>
+      </div>
+    </div>
   </div>
-</div>
+</form>
