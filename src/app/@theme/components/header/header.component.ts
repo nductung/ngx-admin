@@ -3,7 +3,6 @@ import {NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServi
 
 import {UserData} from '../../../@core/data/users';
 import {LayoutService} from '../../../@core/utils';
-import {map, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
@@ -19,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userPictureOnly: boolean = false;
   user: any;
   checked: boolean = false;
+  date = new Date();
 
   themes = [
     {
@@ -54,24 +54,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.currentTheme = this.themeService.currentTheme;
-
     this.user = this.authenticationService.currentUserValue;
 
-    const { xl } = this.breakpointService.getBreakpointsMap();
-    this.themeService.onMediaQueryChange()
-      .pipe(
-        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
-
-    this.themeService.onThemeChange()
-      .pipe(
-        map(({ name }) => name),
-        takeUntil(this.destroy$),
-      )
-      .subscribe(themeName => this.currentTheme = themeName);
+    if (this.date.getHours() < 6 || this.date.getHours() > 18) {
+      this.checked = true;
+      this.themeService.changeTheme('dark');
+    }
 
     this.menuService.onItemClick().subscribe((event) => {
       if (event.item.title === 'Profile') {
