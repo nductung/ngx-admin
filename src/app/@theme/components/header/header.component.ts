@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService} from '@nebular/theme';
 
-import { UserData } from '../../../@core/data/users';
-import { LayoutService } from '../../../@core/utils';
-import { map, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import {UserData} from '../../../@core/data/users';
+import {LayoutService} from '../../../@core/utils';
+import {map, takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
 
@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
+  checked: boolean = false;
 
   themes = [
     {
@@ -80,6 +81,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.router.navigate(['/auth/login']);
       }
     });
+  }
+
+  checkedChange() {
+    if (this.checked) {
+      this.themeService.changeTheme('dark');
+    } else {
+      this.themeService.changeTheme('default');
+    }
   }
 
   ngOnDestroy() {
