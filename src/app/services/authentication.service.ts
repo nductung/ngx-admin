@@ -55,6 +55,10 @@ export class AuthenticationService {
     return this.http.get<any>(`${environment.apiUrl}users/current`);
   }
 
+  changeInformation(data) {
+    return this.http.put<any>(`${environment.apiUrl}users/change-information`, data);
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');

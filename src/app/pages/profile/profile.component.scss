@@ -3,8 +3,8 @@
 
   img {
     position: absolute;
-    width: 220px;
-    height: 220px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: 50%;
     left: 50%;
@@ -14,3 +14,23 @@
   }
 }
 
+.btn-avatar-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 90px;
+}
+
+.btn-avatar-item {
+  flex-grow: 1;
+
+  &:first-child {
+    // margin-right: 12px;
+  }
+}
+
+.btn-input {
+  opacity: 0;
+  position: absolute;
+  left: 35%;
+  line-height: 35px;
+}
