@@ -12,4 +12,5 @@ export const environment = {
   production: false,
   apiUrl: 'http://52.77.244.134:4000/api/v1/',
   picture: 'https://www.akveo.com/blur-admin/assets/img/app/profile/Nasta.png',
+  apiKey: '21a65b692dc7e92a539370f47960f336',
 };

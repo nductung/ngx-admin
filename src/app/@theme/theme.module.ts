@@ -38,6 +38,7 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
+import { WeatherCardComponent } from './components/weather-card/weather-card.component';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -72,8 +73,8 @@ const PIPES = [
 
 @NgModule({
   imports: [CommonModule, ...NB_MODULES, NbToggleModule],
-  exports: [CommonModule, ...PIPES, ...COMPONENTS],
-  declarations: [...COMPONENTS, ...PIPES],
+  exports: [CommonModule, ...PIPES, ...COMPONENTS, WeatherCardComponent],
+  declarations: [...COMPONENTS, ...PIPES, WeatherCardComponent],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders<ThemeModule> {
