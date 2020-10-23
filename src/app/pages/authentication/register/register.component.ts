@@ -20,6 +20,8 @@ export class RegisterComponent {
   user: any = {};
   socialLinks: NbAuthSocialLink[] = [];
 
+  terms = false;
+
   constructor(protected service: AuthenticationService,
               @Inject(NB_AUTH_OPTIONS) protected options = {},
               protected cd: ChangeDetectorRef,
@@ -33,17 +35,21 @@ export class RegisterComponent {
 
   register(): void {
     this.errors = this.messages = [];
-    this.submitted = true;
-
-    this.service.register(this.user).subscribe((res) => {
-      this.submitted = false;
-      this.errors = [];
-      this.messages.push(res.message);
-    }, error => {
-      this.submitted = false;
+    if (this.terms) {
+      this.submitted = true;
+      this.service.register(this.user).subscribe((res) => {
+        this.submitted = false;
+        this.errors = [];
+        this.messages.push(res.message);
+      }, error => {
+        this.submitted = false;
+        this.messages = [];
+        this.errors.push(error);
+      });
+    } else {
       this.messages = [];
-      this.errors.push(error);
-    });
+      this.errors.push('Please agree to our Terms & Conditions');
+    }
   }
 
   getConfigValue(key: string): any {

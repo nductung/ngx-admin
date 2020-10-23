@@ -4,6 +4,8 @@ import {LoginComponent} from './pages/authentication/login/login.component';
 import {AuthGuard} from './helpers/auth.guard';
 import {NbAuthComponent} from '@nebular/auth';
 import {RegisterComponent} from './pages/authentication/register/register.component';
+import {RequestPasswordComponent} from './pages/authentication/request-password/request-password.component';
+import {ResetPasswordComponent} from './pages/authentication/reset-password/reset-password.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +24,14 @@ export const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent,
+      },
+      {
+        path: 'request-password',
+        component: RequestPasswordComponent,
+      },
+      {
+        path: 'reset-password',
+        component: ResetPasswordComponent,
       },
       {
         path: '',

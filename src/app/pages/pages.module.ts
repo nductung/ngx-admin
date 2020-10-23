@@ -5,7 +5,7 @@ import {
   NbCheckboxModule,
   NbIconModule,
   NbInputModule,
-  NbMenuModule
+  NbMenuModule,
 } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
@@ -16,8 +16,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
-import {NbAuthModule} from "@nebular/auth";
-import {FormsModule} from "@angular/forms";
+import {NbAuthModule} from '@nebular/auth';
+import {FormsModule} from '@angular/forms';
+import { RequestPasswordComponent } from './authentication/request-password/request-password.component';
+import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
 
 @NgModule({
   imports: [
@@ -39,6 +41,8 @@ import {FormsModule} from "@angular/forms";
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
+    RequestPasswordComponent,
+    ResetPasswordComponent,
   ],
 })
 export class PagesModule {

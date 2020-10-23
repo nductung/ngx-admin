@@ -25,7 +25,7 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  register(data) {
+  register(data: any) {
     return this.http.post<any>(`${environment.apiUrl}authentication/register`, data);
   }
 
@@ -40,6 +40,14 @@ export class AuthenticationService {
         }
         return user.data;
       }));
+  }
+
+  requestPassword(email: string) {
+    return this.http.post<any>(`${environment.apiUrl}authentication/request-forgot-password`, email);
+  }
+
+  resetPassword(data: any) {
+    return this.http.post<any>(`${environment.apiUrl}authentication/forgot-password`, data);
   }
 
   logout() {
