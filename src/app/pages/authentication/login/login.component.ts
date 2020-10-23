@@ -47,11 +47,14 @@ export class LoginComponent {
 
     this.service.login(this.user.email, this.user.password).pipe(first()).subscribe(
       res => {
-        this.router.navigate(['/pages']).then();
         this.submitted = false;
+        this.errors = [];
+        this.router.navigate(['/pages']).then();
       },
       error => {
         this.submitted = false;
+        this.messages = [];
+        this.errors.push(error);
       });
   }
 
