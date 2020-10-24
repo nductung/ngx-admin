@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {NbThemeService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -12,27 +13,26 @@ export class DashboardComponent implements OnInit {
   cities = ['Hanoi'];
   listCities = [];
   filteredOptions$: Observable<string[]>;
+  valueInput: string;
+  darkMode: boolean = false;
   @ViewChild('autoInput') input;
 
-  constructor(private http: HttpClient) {
-
+  constructor(
+    private http: HttpClient,
+    private themeService: NbThemeService,
+  ) {
+    this.themeService.onThemeChange().subscribe((theme: any) => {
+      this.darkMode = (theme.name === 'dark');
+    });
   }
 
   ngOnInit(): void {
     this.getJSON().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        this.listCities.push(data[i].name);
+        this.listCities.push(data[i]);
       }
     });
     this.filteredOptions$ = of(this.listCities);
-  }
-
-  addCity() {
-    this.cities.push('Thanh Hoa');
-  }
-
-  public getJSON(): Observable<any> {
-    return this.http.get('assets/data/current.city.list.min.json');
   }
 
   private filter(value: string): string[] {
@@ -52,6 +52,18 @@ export class DashboardComponent implements OnInit {
 
   onSelectionChange($event) {
     this.filteredOptions$ = this.getFilteredOptions($event);
+    if ($event) {
+      this.valueInput = $event;
+    }
+  }
+
+  addCity() {
+    this.cities.push(this.valueInput);
+    this.cities = [...new Set(this.cities)];
+  }
+
+  public getJSON(): Observable<any> {
+    return this.http.get('assets/data/current.city.list.min.json');
   }
 
 }

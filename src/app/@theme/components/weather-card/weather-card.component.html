@@ -1,6 +1,5 @@
-<div *ngIf="cityName" (click)="openDetails()"
-     [ngClass]="{'weather__card-dark': darkMode}"
-     class="weather__card">
+<div *ngIf="cityName && state && temp && maxTemp && minTemp" (click)="openDetails()"
+     [ngClass]="{'weather__card-dark': darkMode}" class="weather__card">
   <div [innerText]="cityName" class="city-name__text text-center"></div>
   <div [ngSwitch]="true" class="weather-icon__container w-100 d-flex justify-content-center align-items-center mb-5">
     <svg *ngSwitchCase="state === 'Sunny' || state === 'Clear'" viewBox="2050 -845 262 262">

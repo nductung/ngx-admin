@@ -1,3 +1,16 @@
 .col-md-3 {
   padding: 15px;
 }
+
+.weather__card {
+  box-shadow: 0 0 2rem rgba(0, 0, 255, 0.1);
+  background-color: white;
+  border-radius: 1.75rem;
+  animation: slideup 1s ease-in-out, fadein 1.25s ease-in-out 0ms 1;
+  padding: 2rem;
+}
+
+.weather__card-dark {
+  background: linear-gradient(to bottom, #711b86, #00057a);
+  color: white;
+}
