@@ -1,3 +1,21 @@
 <div class="row">
   <ngx-weather-card class="col-md-3" *ngFor="let city of cities;" [cityName]="city"></ngx-weather-card>
+  <div class="col-md-3 d-flex justify-content-center align-items-center">
+    <div>
+      <input #autoInput
+             nbInput
+             type="text"
+             (input)="onChange()"
+             placeholder="Enter value"
+             [nbAutocomplete]="auto" />
+      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+        <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+          {{ option }}
+        </nb-option>
+
+      </nb-autocomplete>
+    </div>
+    <button nbButton status="primary" (click)="addCity()">Add</button>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WeatherService} from '../../../services/weather.service';
+import {NbThemeService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-weather-card',
@@ -12,8 +13,15 @@ export class WeatherCardComponent implements OnInit {
   temp: any;
   maxTemp: any;
   minTemp: any;
+  darkMode: boolean = false;
 
-  constructor(private weatherService: WeatherService) {
+  constructor(
+    private weatherService: WeatherService,
+    private themeService: NbThemeService,
+  ) {
+    this.themeService.onThemeChange().subscribe((theme: any) => {
+      this.darkMode = (theme.name === 'dark');
+    });
   }
 
   ngOnInit(): void {
