@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public getJSON(): Observable<any> {
-    return this.http.get('assets/data/city.list.min.json');
+    return this.http.get('assets/data/current.city.list.min.json');
   }
 
   private filter(value: string): string[] {
