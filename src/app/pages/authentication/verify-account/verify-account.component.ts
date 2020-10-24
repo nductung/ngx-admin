@@ -1,14 +1,15 @@
 import {ChangeDetectorRef, Component, Inject} from '@angular/core';
-import {getDeepFromObject, NB_AUTH_OPTIONS} from '@nebular/auth';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
+import {getDeepFromObject, NB_AUTH_OPTIONS} from '@nebular/auth';
+import {NbToastrService} from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss'],
+  selector: 'ngx-verify-account',
+  templateUrl: './verify-account.component.html',
+  styleUrls: ['./verify-account.component.scss'],
 })
-export class ResetPasswordComponent {
+export class VerifyAccountComponent {
 
   redirectDelay: number = 0;
   showMessages: any = {};
@@ -25,29 +26,39 @@ export class ResetPasswordComponent {
     protected cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     protected router: Router,
+    private toastrService: NbToastrService,
   ) {
-    this.route.queryParams.subscribe(params => {
-      this.user.email = params['email'];
-    });
-
     this.redirectDelay = this.getConfigValue('forms.resetPassword.redirectDelay');
     this.showMessages = this.getConfigValue('forms.resetPassword.showMessages');
     this.strategy = this.getConfigValue('forms.resetPassword.strategy');
+
+    this.route.queryParams.subscribe(params => {
+      this.user.email = params['email'];
+    });
   }
 
-  resetPass(): void {
+  verifyAccount(): void {
     this.errors = this.messages = [];
     this.submitted = true;
 
-    this.service.resetPassword(this.user).subscribe((res) => {
+    this.service.verifyAccount(this.user).subscribe((result: any) => {
       this.submitted = false;
       this.errors = [];
-      this.messages.push(res.message);
+      this.messages.push(result.message);
       this.router.navigate(['/auth/login']).then();
     }, error => {
       this.submitted = false;
       this.messages = [];
       this.errors.push(error);
+    });
+  }
+
+  requestVerifyAccount() {
+    this.service.requestVerifyAccount({email: this.user.email}).subscribe((res) => {
+      this.toastrService.primary(res.message, 'Thông báo');
+    }, error => {
+      this.toastrService.danger(error, 'Thông báo');
+      this.router.navigate(['/auth/login']).then();
     });
   }
 

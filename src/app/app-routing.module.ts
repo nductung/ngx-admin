@@ -6,6 +6,7 @@ import {NbAuthComponent} from '@nebular/auth';
 import {RegisterComponent} from './pages/authentication/register/register.component';
 import {RequestPasswordComponent} from './pages/authentication/request-password/request-password.component';
 import {ResetPasswordComponent} from './pages/authentication/reset-password/reset-password.component';
+import {VerifyAccountComponent} from './pages/authentication/verify-account/verify-account.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +33,10 @@ export const routes: Routes = [
       {
         path: 'reset-password',
         component: ResetPasswordComponent,
+      },
+      {
+        path: 'verify-account',
+        component: VerifyAccountComponent,
       },
       {
         path: '',

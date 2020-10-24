@@ -51,6 +51,14 @@ export class AuthenticationService {
     return this.http.post<any>(`${environment.apiUrl}authentication/forgot-password`, data);
   }
 
+  verifyAccount(data: any) {
+    return this.http.post<any>(`${environment.apiUrl}authentication/verify-account`, data);
+  }
+
+  requestVerifyAccount(data: any) {
+    return this.http.post<any>(`${environment.apiUrl}authentication/request-verify-account`, data);
+  }
+
   getCurrent() {
     return this.http.get<any>(`${environment.apiUrl}users/current`);
   }

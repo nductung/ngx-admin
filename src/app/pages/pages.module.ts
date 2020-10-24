@@ -20,6 +20,7 @@ import {NbAuthModule} from '@nebular/auth';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RequestPasswordComponent } from './authentication/request-password/request-password.component';
 import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
+import { VerifyAccountComponent } from './authentication/verify-account/verify-account.component';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { ResetPasswordComponent } from './authentication/reset-password/reset-pa
     RegisterComponent,
     RequestPasswordComponent,
     ResetPasswordComponent,
+    VerifyAccountComponent,
   ],
 })
 export class PagesModule {

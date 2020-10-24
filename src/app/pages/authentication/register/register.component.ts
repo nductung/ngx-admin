@@ -41,6 +41,7 @@ export class RegisterComponent {
         this.submitted = false;
         this.errors = [];
         this.messages.push(res.message);
+        this.router.navigate(['/auth/verify-account'], {queryParams: {email: this.user.email}}).then();
       }, error => {
         this.submitted = false;
         this.messages = [];
