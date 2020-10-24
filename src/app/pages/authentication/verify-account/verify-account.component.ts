@@ -37,6 +37,7 @@ export class VerifyAccountComponent {
       this.submitted = false;
       this.errors = [];
       this.messages.push(result.message);
+      this.router.navigate(['/auth/login']).then();
     }, error => {
       this.submitted = false;
       this.messages = [];
@@ -49,7 +50,6 @@ export class VerifyAccountComponent {
       this.toastrService.primary(res.message, 'Thông báo');
     }, error => {
       this.toastrService.danger(error, 'Thông báo');
-      this.router.navigate(['/auth/login']).then();
     });
   }
 
