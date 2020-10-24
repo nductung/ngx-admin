@@ -10,7 +10,7 @@ import {NbThemeService} from '@nebular/theme';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  cities = ['Hanoi'];
+  cities = [];
   listCities = [];
   filteredOptions$: Observable<string[]>;
   valueInput: string;
@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cities = localStorage.getItem('cities') ? JSON.parse(localStorage.getItem('cities')) : [];
     this.getJSON().subscribe(data => {
       for (let i = 0; i < data.length; i++) {
         this.listCities.push(data[i]);
@@ -60,6 +61,7 @@ export class DashboardComponent implements OnInit {
   addCity() {
     this.cities.push(this.valueInput);
     this.cities = [...new Set(this.cities)];
+    localStorage.setItem('cities', JSON.stringify(this.cities));
   }
 
   public getJSON(): Observable<any> {
