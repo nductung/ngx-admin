@@ -11,14 +11,10 @@ import {NbToastrService} from '@nebular/theme';
 })
 export class VerifyAccountComponent {
 
-  redirectDelay: number = 0;
-  showMessages: any = {};
-  strategy: string = '';
-
-  submitted = false;
-  errors: string[] = [];
   messages: string[] = [];
+  errors: string[] = [];
   user: any = {};
+  submitted = false;
 
   constructor(
     protected service: AuthenticationService,
@@ -28,10 +24,6 @@ export class VerifyAccountComponent {
     protected router: Router,
     private toastrService: NbToastrService,
   ) {
-    this.redirectDelay = this.getConfigValue('forms.resetPassword.redirectDelay');
-    this.showMessages = this.getConfigValue('forms.resetPassword.showMessages');
-    this.strategy = this.getConfigValue('forms.resetPassword.strategy');
-
     this.route.queryParams.subscribe(params => {
       this.user.email = params['email'];
     });
@@ -65,4 +57,5 @@ export class VerifyAccountComponent {
   getConfigValue(key: string): any {
     return getDeepFromObject(this.options, key, null);
   }
+
 }

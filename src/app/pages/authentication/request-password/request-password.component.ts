@@ -10,23 +10,17 @@ import {AuthenticationService} from '../../../services/authentication.service';
 })
 export class RequestPasswordComponent {
 
-  redirectDelay: number = 0;
-  showMessages: any = {};
-  strategy: string = '';
-
-  submitted = false;
-  errors: string[] = [];
   messages: string[] = [];
+  errors: string[] = [];
   user: any = {};
+  submitted = false;
 
-  constructor(protected service: AuthenticationService,
-              @Inject(NB_AUTH_OPTIONS) protected options = {},
-              protected cd: ChangeDetectorRef,
-              protected router: Router) {
-
-    this.redirectDelay = this.getConfigValue('forms.requestPassword.redirectDelay');
-    this.showMessages = this.getConfigValue('forms.requestPassword.showMessages');
-    this.strategy = this.getConfigValue('forms.requestPassword.strategy');
+  constructor(
+    protected service: AuthenticationService,
+    @Inject(NB_AUTH_OPTIONS) protected options = {},
+    protected cd: ChangeDetectorRef,
+    protected router: Router,
+  ) {
   }
 
   requestPass(): void {
@@ -48,4 +42,5 @@ export class RequestPasswordComponent {
   getConfigValue(key: string): any {
     return getDeepFromObject(this.options, key, null);
   }
+
 }

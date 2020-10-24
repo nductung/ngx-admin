@@ -10,14 +10,10 @@ import {AuthenticationService} from '../../../services/authentication.service';
 })
 export class ResetPasswordComponent {
 
-  redirectDelay: number = 0;
-  showMessages: any = {};
-  strategy: string = '';
-
-  submitted = false;
-  errors: string[] = [];
   messages: string[] = [];
+  errors: string[] = [];
   user: any = {};
+  submitted = false;
 
   constructor(
     protected service: AuthenticationService,
@@ -29,10 +25,6 @@ export class ResetPasswordComponent {
     this.route.queryParams.subscribe(params => {
       this.user.email = params['email'];
     });
-
-    this.redirectDelay = this.getConfigValue('forms.resetPassword.redirectDelay');
-    this.showMessages = this.getConfigValue('forms.resetPassword.showMessages');
-    this.strategy = this.getConfigValue('forms.resetPassword.strategy');
   }
 
   resetPass(): void {
@@ -54,4 +46,5 @@ export class ResetPasswordComponent {
   getConfigValue(key: string): any {
     return getDeepFromObject(this.options, key, null);
   }
+
 }

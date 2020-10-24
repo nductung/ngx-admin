@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, Inject} from '@angular/core';
-import {getDeepFromObject, NB_AUTH_OPTIONS, NbAuthSocialLink} from '@nebular/auth';
+import {getDeepFromObject, NB_AUTH_OPTIONS} from '@nebular/auth';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {Router} from '@angular/router';
 import {first} from 'rxjs/operators';
@@ -11,16 +11,10 @@ import {first} from 'rxjs/operators';
 })
 export class LoginComponent {
 
-  redirectDelay: number = 0;
-  showMessages: any = {};
-  strategy: string = '';
-
-  errors: string[] = [];
   messages: string[] = [];
+  errors: string[] = [];
   user: any = {};
   submitted: boolean = false;
-  socialLinks: NbAuthSocialLink[] = [];
-  rememberMe = false;
 
   constructor(
     protected service: AuthenticationService,
@@ -28,16 +22,9 @@ export class LoginComponent {
     protected cd: ChangeDetectorRef,
     protected router: Router,
   ) {
-    // redirect to home if already logged in
     if (this.service.currentUserValue) {
       this.router.navigate(['/pages']).then();
     }
-
-    this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
-    this.showMessages = this.getConfigValue('forms.login.showMessages');
-    this.strategy = this.getConfigValue('forms.login.strategy');
-    this.socialLinks = this.getConfigValue('forms.login.socialLinks');
-    this.rememberMe = this.getConfigValue('forms.login.rememberMe');
   }
 
   login(): void {
@@ -62,4 +49,5 @@ export class LoginComponent {
   getConfigValue(key: string): any {
     return getDeepFromObject(this.options, key, null);
   }
+
 }

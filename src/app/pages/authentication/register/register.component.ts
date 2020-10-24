@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, Inject} from '@angular/core';
-import {getDeepFromObject, NB_AUTH_OPTIONS, NbAuthSocialLink} from '@nebular/auth';
+import {getDeepFromObject, NB_AUTH_OPTIONS} from '@nebular/auth';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
 
@@ -10,27 +10,18 @@ import {AuthenticationService} from '../../../services/authentication.service';
 })
 export class RegisterComponent {
 
-  redirectDelay: number = 0;
-  showMessages: any = {};
-  strategy: string = '';
-
-  submitted = false;
-  errors: string[] = [];
   messages: string[] = [];
+  errors: string[] = [];
   user: any = {};
-  socialLinks: NbAuthSocialLink[] = [];
+  submitted: boolean = false;
+  terms: boolean = false;
 
-  terms = false;
-
-  constructor(protected service: AuthenticationService,
-              @Inject(NB_AUTH_OPTIONS) protected options = {},
-              protected cd: ChangeDetectorRef,
-              protected router: Router) {
-
-    this.redirectDelay = this.getConfigValue('forms.register.redirectDelay');
-    this.showMessages = this.getConfigValue('forms.register.showMessages');
-    this.strategy = this.getConfigValue('forms.register.strategy');
-    this.socialLinks = this.getConfigValue('forms.login.socialLinks');
+  constructor(
+    protected service: AuthenticationService,
+    @Inject(NB_AUTH_OPTIONS) protected options = {},
+    protected cd: ChangeDetectorRef,
+    protected router: Router,
+  ) {
   }
 
   register(): void {
@@ -56,4 +47,5 @@ export class RegisterComponent {
   getConfigValue(key: string): any {
     return getDeepFromObject(this.options, key, null);
   }
+
 }
