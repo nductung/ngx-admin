@@ -7,6 +7,7 @@ import {RegisterComponent} from './pages/authentication/register/register.compon
 import {RequestPasswordComponent} from './pages/authentication/request-password/request-password.component';
 import {ResetPasswordComponent} from './pages/authentication/reset-password/reset-password.component';
 import {VerifyAccountComponent} from './pages/authentication/verify-account/verify-account.component';
+import {PagesGuard} from './helpers/pages.guard';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,7 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
+    canActivate: [PagesGuard],
     component: NbAuthComponent,
     children: [
       {

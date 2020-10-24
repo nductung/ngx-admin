@@ -22,9 +22,6 @@ export class LoginComponent {
     protected cd: ChangeDetectorRef,
     protected router: Router,
   ) {
-    if (this.service.currentUserValue) {
-      this.router.navigate(['/pages']).then();
-    }
   }
 
   login(): void {
