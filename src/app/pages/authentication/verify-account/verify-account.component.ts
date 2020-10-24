@@ -37,7 +37,6 @@ export class VerifyAccountComponent {
       this.submitted = false;
       this.errors = [];
       this.messages.push(result.message);
-      this.router.navigate(['/auth/login']).then();
     }, error => {
       this.submitted = false;
       this.messages = [];
